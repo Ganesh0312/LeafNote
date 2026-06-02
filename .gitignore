@@ -1,0 +1,72 @@
+# ─── Dependencies ─────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ─── Environment variables (NEVER commit secrets) ─────────────────────────────
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# ─── Next.js (client) ─────────────────────────────────────────────────────────
+client/.next/
+client/out/
+client/build/
+client/coverage/
+client/.pnpm-debug.log*
+client/next-env.d.ts
+client/*.tsbuildinfo
+
+# ─── Build outputs (server) ───────────────────────────────────────────────────
+server/dist/
+server/build/
+server/coverage/
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Vercel ───────────────────────────────────────────────────────────────────
+.vercel
+
+# ─── OS generated files ───────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ─── Editor / IDE ─────────────────────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.pem
+*.tsbuildinfo
+
+nextjs.md
+PROJECT_CONTEXT.md
