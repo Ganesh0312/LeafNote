@@ -1,4 +1,6 @@
 const QuestionAnswer = require('../models/QuestionAnswer');
+const Topic = require('../models/Topic');
+const Subtopic = require('../models/Subtopic');
 
 // @desc    Get all Q&A for a subtopic
 // @route   GET /api/qna/subtopic/:subtopicId
@@ -112,8 +114,72 @@ const deleteQa = async (req, res) => {
   }
 };
 
+// @desc    Get all Q&As for a subject, grouped by topic > subtopic
+// @route   GET /api/qna/subject/:subjectId
+// @access  Public
+const getQasBySubject = async (req, res) => {
+  try {
+    const { subjectId } = req.params;
+
+    // 1. Get all topics under this subject
+    const topics = await Topic.find({ subject: subjectId }).sort({ order: 1 });
+    const topicIds = topics.map((t) => t._id);
+
+    // 2. Get all subtopics under those topics
+    const subtopics = await Subtopic.find({ topic: { $in: topicIds } }).sort({ order: 1 });
+    const subtopicIds = subtopics.map((st) => st._id);
+
+    // 3. Get all Q&As under those subtopics
+    const qas = await QuestionAnswer.find({ subtopic: { $in: subtopicIds } })
+      .populate('createdBy', 'username email')
+      .sort({ order: 1 });
+
+    // 4. Build grouped structure: topics[] → subtopics[] → qas[]
+    const topicMap = {};
+    topics.forEach((t) => {
+      topicMap[t._id.toString()] = {
+        _id: t._id,
+        title: t.title,
+        slug: t.slug,
+        subtopics: [],
+      };
+    });
+
+    const subtopicMap = {};
+    subtopics.forEach((st) => {
+      const topicId = st.topic.toString();
+      const stEntry = {
+        _id: st._id,
+        title: st.title,
+        slug: st.slug,
+        qas: [],
+      };
+      subtopicMap[st._id.toString()] = stEntry;
+      if (topicMap[topicId]) {
+        topicMap[topicId].subtopics.push(stEntry);
+      }
+    });
+
+    qas.forEach((qa) => {
+      const stId = qa.subtopic?.toString();
+      if (stId && subtopicMap[stId]) {
+        subtopicMap[stId].qas.push(qa);
+      }
+    });
+
+    const grouped = Object.values(topicMap).filter(
+      (t) => t.subtopics.some((st) => st.qas.length > 0)
+    );
+
+    res.status(200).json({ topics: grouped, totalQas: qas.length });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getQasBySubtopic,
+  getQasBySubject,
   getQaById,
   createQa,
   updateQa,

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   getQasBySubtopic,
+  getQasBySubject,
   getQaById,
   createQa,
   updateQa,
@@ -15,6 +16,9 @@ router.route('/')
 
 router.route('/subtopic/:subtopicId')
   .get(getQasBySubtopic);
+
+router.route('/subject/:subjectId')
+  .get(getQasBySubject);
 
 router.route('/:id')
   .get(getQaById)

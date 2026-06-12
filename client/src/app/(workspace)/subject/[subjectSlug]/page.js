@@ -4,8 +4,8 @@ import React, { use, useEffect, useState } from 'react';
 import { useNotes } from '../../../../context/NoteContext';
 import { useAuth } from '../../../../context/AuthContext';
 import { useToast } from '../../../../context/ToastContext';
-import { useRouter } from 'next/navigation';
-import { BookOpen, Edit, Trash2, Plus, ArrowRight, Loader, Info, HelpCircle, GraduationCap, X } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import { BookOpen, Edit, Trash2, Plus, ArrowRight, Loader, Info, HelpCircle, GraduationCap, X, MessageCircleQuestion } from 'lucide-react';
 import Link from 'next/link';
 import LoadingSkeleton from '../../../../components/LoadingSkeleton';
 
@@ -114,6 +114,24 @@ export default function SubjectDetailPage({ params }) {
     <div className="flex-1 overflow-y-auto bg-zinc-950 p-6 sm:p-10 flex flex-col h-[calc(100vh-4rem)]">
       {/* Subject Header */}
       <div className="max-w-4xl w-full mx-auto space-y-6 flex-1">
+
+        {/* Tab navigation */}
+        <div className="flex items-center gap-1 border-b border-zinc-900 pb-0">
+          <Link
+            href={`/subject/${subjectSlug}`}
+            className="flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold border-b-2 border-indigo-500 text-indigo-400 -mb-px"
+          >
+            <GraduationCap size={13} />
+            <span>Topics</span>
+          </Link>
+          <Link
+            href={`/subject/${subjectSlug}/questions`}
+            className="flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold border-b-2 border-transparent text-zinc-500 hover:text-zinc-300 -mb-px transition"
+          >
+            <MessageCircleQuestion size={13} />
+            <span>Questions</span>
+          </Link>
+        </div>
 
         {/* Actions bar */}
         {(canUpdate || canDelete) && (

@@ -91,6 +91,17 @@ export const NoteProvider = ({ children }) => {
     }
   };
 
+  // Fetch all Q&As for a subject, grouped by topic > subtopic
+  const fetchQasBySubject = async (subjectId) => {
+    try {
+      const data = await api.get(`/qna/subject/${subjectId}`);
+      return data; // { topics: [...], totalQas: number }
+    } catch (err) {
+      setError(err.message);
+      return null;
+    }
+  };
+
   const loadSubtopicDetails = async (subtopicId) => {
     try {
       setLoading(true);
@@ -309,6 +320,7 @@ export const NoteProvider = ({ children }) => {
         fetchSubjectBySlug,
         fetchTopicBySlug,
         fetchSubtopicBySlug,
+        fetchQasBySubject,
         loadSubtopicDetails,
         createSubject,
         updateSubject,
