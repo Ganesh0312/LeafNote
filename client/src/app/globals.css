@@ -6,6 +6,36 @@
   --panel-bg: #f4f4f5;
   --border-color: #e4e4e7;
   --text-muted: #52525b;
+
+  /* Inverted Zinc for Light Mode (overrides Tailwind defaults) */
+  --color-zinc-950: #ffffff;
+  --color-zinc-900: #fafafa;
+  --color-zinc-850: #f4f4f5;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-750: #d4d4d8;
+  --color-zinc-700: #a1a1aa;
+  --color-zinc-650: #71717a;
+  --color-zinc-600: #71717a;
+  --color-zinc-550: #52525b;
+  --color-zinc-500: #52525b;
+  --color-zinc-450: #3f3f46;
+  --color-zinc-400: #3f3f46;
+  --color-zinc-350: #27272a;
+  --color-zinc-300: #27272a;
+  --color-zinc-250: #18181b;
+  --color-zinc-200: #18181b;
+  --color-zinc-100: #09090b;
+  --color-zinc-50:  #000000;
+  
+  --color-white: #09090b;
+  --color-black: #ffffff;
+  --color-indigo-950: #e0e7ff;
+  --color-indigo-900: #c7d2fe;
+  --color-indigo-800: #a5b4fc;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-500: #6366f1;
+  --color-indigo-400: #818cf8;
+  --color-indigo-300: #a5b4fc;
 }
 
 .dark {
@@ -14,6 +44,36 @@
   --panel-bg: #121214;
   --border-color: #1f1f23;
   --text-muted: #a1a1aa;
+
+  /* Standard Zinc for Dark Mode */
+  --color-zinc-950: #09090b;
+  --color-zinc-900: #18181b;
+  --color-zinc-850: #1f1f22;
+  --color-zinc-800: #27272a;
+  --color-zinc-750: #3f3f46;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-650: #52525b;
+  --color-zinc-600: #52525b;
+  --color-zinc-550: #71717a;
+  --color-zinc-500: #71717a;
+  --color-zinc-450: #a1a1aa;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-350: #d4d4d8;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-250: #e4e4e7;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-50:  #fafafa;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-indigo-950: #1e1b4b;
+  --color-indigo-900: #312e81;
+  --color-indigo-800: #3730a3;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-500: #6366f1;
+  --color-indigo-400: #818cf8;
+  --color-indigo-300: #a5b4fc;
 }
 
 @theme inline {
